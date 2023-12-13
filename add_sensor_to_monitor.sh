@@ -37,6 +37,7 @@ cat > /etc/telegraf/telegraf.d/custom.conf << EOF
 [[inputs.netstat]]
 [[inputs.processes]]
 [[inputs.kernel]]
+[[inputs.diskio]]
 
 # Output Plugin InfluxDB
 [[outputs.influxdb]]
