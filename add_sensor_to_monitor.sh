@@ -29,7 +29,7 @@ cat > /etc/telegraf/telegraf.d/custom.conf << EOF
     report_active = false
 [[inputs.disk]]
     ignore_fs = ["tmpfs", "devtmpfs", "devfs"]
-[[inputs.io]]
+[[inputs.diskio]]
 [[inputs.mem]]
 [[inputs.net]]
 [[inputs.system]]
