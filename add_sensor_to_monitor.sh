@@ -5,8 +5,7 @@ if [ "$#" -ne 4 ]; then
 fi
 hostname=$1
 influxdb_host=$2
-influxdb_user=$3
-influxdb_pass=$4
+influxdb_token=$3
 # Install telegraf
 wget -q https://repos.influxdata.com/influxdata-archive_compat.key -O /tmp/influxdata-archive_compat.key
 echo '393e8779c89ac8d958f81f942f9ad7fb82a25e133faddaf92e15b16e6ac9ce4c /tmp/influxdata-archive_compat.key' | sha256sum -c && cat /tmp/influxdata-archive_compat.key | gpg --dearmor | sudo tee /etc/apt/trusted.gpg.d/influxdata-archive_compat.gpg > /dev/null
@@ -40,11 +39,11 @@ cat > /etc/telegraf/telegraf.d/custom.conf << EOF
 [[inputs.diskio]]
 
 # Output Plugin InfluxDB
-[[outputs.influxdb]]
-  database = "telegraf"
-  urls = [ "$influxdb_host" ]
-  username = "$influxdb_user"
-  password = "$influxdb_pass"
+[[outputs.influxdb_v2]]
+  urls = ["$influxdb_host"]
+  token = "JSlpihOOsJ7CKxcs776aGYjVKymG5cKOTvlnhweEeSbVjYZojvZ91YCSiiraiOyMwo6lx2dcuzYGKETR0uz6wA=="
+  organization = "TonCorp"
+  bucket = "server_metrics"
   
 #Telegraf provides telegraf command to manage the configuration, 
 #including generate the configuration itself, run the command as below.
